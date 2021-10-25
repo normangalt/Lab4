@@ -15,4 +15,10 @@ public class FlowerBucket {
         }
         return price;
     }
+    public FlowerPack getByIndex(int index){
+        return this.flowerPacks.get(index);
+    }
+    public int lenght(){
+        return flowerPacks.size();
+    }
 }
