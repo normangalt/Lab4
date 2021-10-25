@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StoreTest {
@@ -22,6 +24,8 @@ class StoreTest {
     @Test
     void search() {
         FlowerType flowerType = FlowerType.ROSE;
-        assertEquals(store.getStorage()[0].getByIndex(0).getFlower().getFlowerType(), flowerType);
+        List<FlowerPack> flowerPacksListTest = this.store.search(FlowerType.ROSE);
+        assertEquals(flowerPacksListTest.get(0).getFlower().getFlowerType(),
+                flowerType);
     }
 }

@@ -1,6 +1,10 @@
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter @Setter @ToString
 public class Store {
     private FlowerBucket[] storage;
@@ -9,21 +13,20 @@ public class Store {
         this.storage = flowerBucket;
     }
 
-    public FlowerPack[] search(FlowerType flowerType){
+    public List<FlowerPack> search(FlowerType flowerType){
         /// Prints all available packs of flowers for the given type.
-        FlowerPack[] flowerPacksArray = new FlowerPack[55];
-        for (int index = 0; index < this.storage.length;index++){
-            FlowerBucket flowerBucket = this.storage[index];
-            int lenght = flowerBucket.lenght();
-            for (int indexJ = 0; indexJ < lenght; indexJ++){
+        List<FlowerPack> flowerPacksList = new ArrayList<>();
+        for (FlowerBucket flowerBucket : this.storage) {
+            int length = flowerBucket.lenght();
+            for (int indexJ = 0; indexJ < length; indexJ++) {
                 FlowerPack flowerPack = flowerBucket.getByIndex(indexJ);
                 FlowerType flowerTypePack = flowerPack.getFlower().getFlowerType();
-                if (flowerType == flowerTypePack){
-                    flowerPacksArray[index + indexJ] = flowerPack;
+                if (flowerType == flowerTypePack) {
+                    flowerPacksList.add(flowerPack);
                     System.out.println(flowerPack);
                 }
             }
         }
-        return flowerPacksArray;
+        return flowerPacksList;
     }
 }
